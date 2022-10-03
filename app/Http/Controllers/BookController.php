@@ -31,24 +31,24 @@ class BookController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  Book  $book
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($book)
     {
-        return Book::findOrFail($id);
+        return Book::findOrFail($book);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  Book  $book
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $book)
     {
-        $book = Book::findOrFail($id);
+        $book = Book::findOrFail($book);
 
         $book->update($request->all());
 
@@ -58,11 +58,11 @@ class BookController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  Book  $book
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($book)
     {
-        return Book::destroy($id);
+        return Book::destroy($book);
     }
 }

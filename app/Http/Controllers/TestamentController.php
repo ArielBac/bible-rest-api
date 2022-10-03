@@ -31,24 +31,24 @@ class TestamentController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  Testament  $testament
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($testament)
     {
-        return Testament::findOrFail($id);
+        return Testament::findOrFail($testament);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  Testament  $testament
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $testament)
     {
-        $testament = Testament::findOrFail($id);
+        $testament = Testament::findOrFail($testament);
 
         $testament->update($request->all());
 
@@ -58,11 +58,11 @@ class TestamentController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  Testament  $testament
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($testament)
     {
-        return Testament::destroy($id);
+        return Testament::destroy($testament);
     }
 }

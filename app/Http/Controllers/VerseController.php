@@ -31,24 +31,24 @@ class VerseController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  Verse  $verse
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($verse)
     {
-        return Verse::findOrFail($id);
+        return Verse::findOrFail($verse);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  Verse  $verse
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $verse)
     {
-        $verse = Verse::findOrFail($id);
+        $verse = Verse::findOrFail($verse);
 
         $verse->update($request->all());
 
@@ -58,11 +58,11 @@ class VerseController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  Verse  $verse
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($verse)
     {
-        return Verse::destroy($id);
+        return Verse::destroy($verse);
     }
 }
