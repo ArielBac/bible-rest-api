@@ -10,7 +10,7 @@ This project was developed during a Laravel 9 REST API class. It has a CRUD for 
 ## Local Usage
 
 - Clone this repository
-- Configure .env file with your database credentials
+- Configure .env file with your database credentials (use Laravel Sail documentation)
 - Execute:
     - `.vendor/bin/sail up`
     - `./vendor/bin/sail composer install`
