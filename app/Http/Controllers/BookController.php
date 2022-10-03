@@ -25,7 +25,15 @@ class BookController extends Controller
      */
     public function store(Request $request)
     {
-        return Book::create($request->all());
+        if (Book::create($request->all())) {
+            return response()->json([
+                'message' => 'Book succefully registered'
+            ], 201);
+        }
+
+        return response()->json([
+            'message' => 'Book register failed'
+        ], 404);
     }
 
     /**
@@ -36,7 +44,15 @@ class BookController extends Controller
      */
     public function show($book)
     {
-        return Book::findOrFail($book);
+        $book = Book::find($book);
+
+        if ($book) {
+            return $book;
+        }
+
+        return response()->json([
+            'message' => 'Book not exists'
+        ], 404);
     }
 
     /**
@@ -48,11 +64,17 @@ class BookController extends Controller
      */
     public function update(Request $request, $book)
     {
-        $book = Book::findOrFail($book);
+        $book = Book::find($book);
 
-        $book->update($request->all());
+        if ($book) {
+            $book->update($request->all());
 
-        return $book;
+            return $book;
+        }
+
+        return response()->json([
+            'message' => 'Book not exists'
+        ], 404);
     }
 
     /**
@@ -63,6 +85,14 @@ class BookController extends Controller
      */
     public function destroy($book)
     {
-        return Book::destroy($book);
+        if (Book::destroy($book)) {
+            return response()->json([
+                'message' => 'Book succefully removed'
+            ], 201);
+        }
+
+        return response()->json([
+            'message' => 'Book not exists'
+        ], 404);
     }
 }

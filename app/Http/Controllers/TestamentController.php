@@ -25,7 +25,15 @@ class TestamentController extends Controller
      */
     public function store(Request $request)
     {
-        return Testament::create($request->all());
+        if (Testament::create($request->all())) {
+            return response()->json([
+                'message' => 'Testament succefully registered'
+            ], 201);
+        }
+
+        return response()->json([
+            'message' => 'Testament register failed'
+        ], 404);
     }
 
     /**
@@ -36,7 +44,15 @@ class TestamentController extends Controller
      */
     public function show($testament)
     {
-        return Testament::findOrFail($testament);
+        $testament = Testament::find($testament);
+
+        if ($testament) {
+            return $testament;
+        }
+
+        return response()->json([
+            'message' => 'Testament not exists'
+        ], 404);
     }
 
     /**
@@ -48,11 +64,17 @@ class TestamentController extends Controller
      */
     public function update(Request $request, $testament)
     {
-        $testament = Testament::findOrFail($testament);
+        $testament = Testament::find($testament);
 
-        $testament->update($request->all());
+        if ($testament) {
+            $testament->update($request->all());
 
-        return $testament;
+            return $testament;
+        }
+
+        return response()->json([
+            'message' => 'Testament not exists'
+        ], 404);
     }
 
     /**
@@ -63,6 +85,14 @@ class TestamentController extends Controller
      */
     public function destroy($testament)
     {
-        return Testament::destroy($testament);
+        if (Testament::destroy($testament)) {
+            return response()->json([
+                'message' => 'Testament succefully removed'
+            ], 201);
+        }
+
+        return response()->json([
+            'message' => 'Testament not exists'
+        ], 404);
     }
 }

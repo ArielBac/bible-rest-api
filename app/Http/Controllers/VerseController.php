@@ -25,7 +25,15 @@ class VerseController extends Controller
      */
     public function store(Request $request)
     {
-        return Verse::create($request->all());
+        if (Verse::create($request->all())) {
+            return response()->json([
+                'message' => 'Verse succefully registered'
+            ], 201);
+        }
+
+        return response()->json([
+            'message' => 'Verse register failed'
+        ], 404);
     }
 
     /**
@@ -36,7 +44,15 @@ class VerseController extends Controller
      */
     public function show($verse)
     {
-        return Verse::findOrFail($verse);
+        $verse = Verse::find($verse);
+
+        if ($verse) {
+            return $verse;
+        }
+
+        return response()->json([
+            'message' => 'Verse not exists'
+        ], 404);
     }
 
     /**
@@ -48,11 +64,17 @@ class VerseController extends Controller
      */
     public function update(Request $request, $verse)
     {
-        $verse = Verse::findOrFail($verse);
+        $verse = Verse::find($verse);
 
-        $verse->update($request->all());
+        if ($verse) {
+            $verse->update($request->all());
 
-        return $verse;
+            return $verse;
+        }
+
+        return response()->json([
+            'message' => 'Verse not exists'
+        ], 404);
     }
 
     /**
@@ -63,6 +85,14 @@ class VerseController extends Controller
      */
     public function destroy($verse)
     {
-        return Verse::destroy($verse);
+        if (Verse::destroy($verse)) {
+            return response()->json([
+                'message' => 'Verse succefully removed'
+            ], 201);
+        }
+
+        return response()->json([
+            'message' => 'Verse not exists'
+        ], 404);
     }
 }
