@@ -2,6 +2,8 @@
 
 This project was developed during a Laravel 9 REST API class. It has a CRUD for Testaments, Books, Verses, Languages and Translates of Holy Bible. I used Sanctum for authentication, different ways of tables' relationships.
 
+All routes, except /register and /login, need a authorization token generated when someone do the login, this token needs to be sent as a bearer auth in the request's header.
+
 ## Required
 
 - Docker
@@ -21,13 +23,16 @@ This project was developed during a Laravel 9 REST API class. It has a CRUD for 
 
 Route                                | HTTP method    | Request data
 ------------------------------------ | -------------- | --------
+localhost/api/register               | POST           | name, email, password, password_confirmation, nameToken
+localhost/api/login                  | POST           | email, password
+localhost/api/logout                 | POST           | 
 localhost/api/testament              | POST           | name
 localhost/api/testament/{testament}  | PUT,PATCH      | name
 localhost/api/testament              | GET            | 
 localhost/api/testament{testament}   | GET            | 
 localhost/api/testament{testament}   | DELETE         | 
-localhost/api/book                   | POST           | name, testament_id, abbreviation, position
-localhost/api/book{book}             | PUT,PATCH      | name, testament_id, abbreviation, position
+localhost/api/book                   | POST           | name, testament_id, abbreviation, position, translate_id
+localhost/api/book{book}             | PUT,PATCH      | name, testament_id, abbreviation, position, translate_id
 localhost/api/book                   | GET            | 
 localhost/api/book{book}             | GET            | 
 localhost/api/book{book}             | DELETE         | 
@@ -36,3 +41,13 @@ localhost/api/verse{verse}           | PUT,PATCH      | chapter, book_id, verse,
 localhost/api/verse                  | GET            | 
 localhost/api/verse{verse}           | GET            | 
 localhost/api/verse{verse}           | DELETE         | 
+localhost/api/language               | POST           | name
+localhost/api/language{language}     | PUT,PATCH      | name
+localhost/api/language               | GET            | 
+localhost/api/language{language}     | GET            | 
+localhost/api/language{language}     | DELETE         | 
+localhost/api/translate              | POST           | name, abbreviation, language_id
+localhost/api/translate{translate}   | PUT,PATCH      | name, abbreviation, language_id
+localhost/api/translate              | GET            | 
+localhost/api/translate{translate}   | GET            | 
+localhost/api/translate{translate}   | DELETE         | 
