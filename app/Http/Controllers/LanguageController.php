@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Book;
+use App\Models\Language;
 use Illuminate\Http\Request;
 
-class BookController extends Controller
+class LanguageController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +14,7 @@ class BookController extends Controller
      */
     public function index()
     {
-        return Book::all();
+        return Language::all();
     }
 
     /**
@@ -25,37 +25,35 @@ class BookController extends Controller
      */
     public function store(Request $request)
     {
-        if (Book::create($request->all())) {
+        if (Language::create($request->all())) {
             return response()->json([
-                'message' => 'Book successfully registered'
+                'message' => 'Language successfully registered'
             ], 201);
         }
 
         return response()->json([
-            'message' => 'Book register failed'
+            'message' => 'Language register failed'
         ], 404);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  Book  $book
+     * @param  Language  $language
      * @return \Illuminate\Http\Response
      */
-    public function show($book)
+    public function show($language)
     {
-        $book = Book::find($book);
+        $language = Language::find($language);
 
-        if ($book) {
-            $book->testament;
-            $book->verses;
-            $book->translate;
+        if ($language) {
+            $language->translate;
 
-            return $book;
+            return $language;
         }
 
         return response()->json([
-            'message' => 'Book not exists'
+            'message' => 'Language not exists'
         ], 404);
     }
 
@@ -63,40 +61,40 @@ class BookController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  Book  $book
+     * @param  Language  $language
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $book)
+    public function update(Request $request, $language)
     {
-        $book = Book::find($book);
+        $language = Language::find($language);
 
-        if ($book) {
-            $book->update($request->all());
+        if ($language) {
+            $language->update($request->all());
 
-            return $book;
+            return $language;
         }
 
         return response()->json([
-            'message' => 'Book not exists'
+            'message' => 'Language not exists'
         ], 404);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  Book  $book
+     * @param  Language  $language
      * @return \Illuminate\Http\Response
      */
-    public function destroy($book)
+    public function destroy($language)
     {
-        if (Book::destroy($book)) {
+        if (Language::destroy($language)) {
             return response()->json([
-                'message' => 'Book successfully removed'
+                'message' => 'Language successfully removed'
             ], 201);
         }
 
         return response()->json([
-            'message' => 'Book not exists'
+            'message' => 'Language not exists'
         ], 404);
     }
 }

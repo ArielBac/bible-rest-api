@@ -5,17 +5,17 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Testament extends Model
+class Language extends Model
 {
     use HasFactory;
 
     protected $fillable = ['name'];
 
     /**
-     * 1 (testament) x n (books)
+     * 1 x n
      */
-    public function books()
+    public function translate()
     {
-        return $this->hasMany(Book::class);
+        return $this->hasMany(Translate::class);
     }
 }

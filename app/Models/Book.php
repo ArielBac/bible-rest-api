@@ -9,7 +9,7 @@ class Book extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['testament_id', 'position', 'name', 'abbreviation'];
+    protected $fillable = ['testament_id', 'position', 'name', 'abbreviation', 'translate_id'];
 
     public function testament()
     {
@@ -19,5 +19,10 @@ class Book extends Model
     public function verses()
     {
         return $this->hasMany(Verse::class);
+    }
+
+    public function translate()
+    {
+        return $this->belongsTo(Translate::class);
     }
 }

@@ -2,7 +2,9 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BookController;
+use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\TestamentController;
+use App\Http\Controllers\TranslateController;
 use App\Http\Controllers\VerseController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -25,6 +27,8 @@ Route::group(['middleware' => ['auth:sanctum']], function() {
         'testament' => TestamentController::class,
         'book' => BookController::class,
         'verse' => VerseController::class,
+        'language' => LanguageController::class,
+        'translate' => TranslateController::class,
     ]);
 
     // Logout Route

@@ -13,15 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('verses', function (Blueprint $table) {
+        Schema::create('translates', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('book_id');
-            $table->integer('chapter');
-            $table->integer('verse');
-            $table->text('text');
+            $table->unsignedBigInteger('language_id');
+            $table->string('name');
+            $table->string('abbreviation');
             $table->timestamps();
 
-            $table->foreign('book_id')->references('id')->on('books');
+            $table->foreign('language_id')->references('id')->on('languages');
         });
     }
 
@@ -32,10 +31,10 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('verses', function (Blueprint $table) {
-            $table->dropForeign('verses_book_id_foreign');
+        Schema::table('translates', function (Blueprint $table) {
+            $table->dropForeign('translates_language_id_foreign');
         });
 
-        Schema::dropIfExists('verses');
+        Schema::dropIfExists('translates');
     }
 };

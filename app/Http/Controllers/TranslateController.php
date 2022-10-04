@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Book;
+use App\Models\Translate;
 use Illuminate\Http\Request;
 
-class BookController extends Controller
+class TranslateController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +14,7 @@ class BookController extends Controller
      */
     public function index()
     {
-        return Book::all();
+        return Translate::all();
     }
 
     /**
@@ -25,37 +25,36 @@ class BookController extends Controller
      */
     public function store(Request $request)
     {
-        if (Book::create($request->all())) {
+        if (Translate::create($request->all())) {
             return response()->json([
-                'message' => 'Book successfully registered'
+                'message' => 'Translate successfully registered'
             ], 201);
         }
 
         return response()->json([
-            'message' => 'Book register failed'
+            'message' => 'Translate register failed'
         ], 404);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  Book  $book
+     * @param  Translate  $translate
      * @return \Illuminate\Http\Response
      */
-    public function show($book)
+    public function show($translate)
     {
-        $book = Book::find($book);
+        $translate = Translate::find($translate);
 
-        if ($book) {
-            $book->testament;
-            $book->verses;
-            $book->translate;
+        if ($translate) {
+            $translate->language;
+            $translate->books;
 
-            return $book;
+            return $translate;
         }
 
         return response()->json([
-            'message' => 'Book not exists'
+            'message' => 'Translate not exists'
         ], 404);
     }
 
@@ -63,40 +62,40 @@ class BookController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  Book  $book
+     * @param  Translate  $translate
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $book)
+    public function update(Request $request, $translate)
     {
-        $book = Book::find($book);
+        $translate = Translate::find($translate);
 
-        if ($book) {
-            $book->update($request->all());
+        if ($translate) {
+            $translate->update($request->all());
 
-            return $book;
+            return $translate;
         }
 
         return response()->json([
-            'message' => 'Book not exists'
+            'message' => 'Translate not exists'
         ], 404);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  Book  $book
+     * @param  Translate  $translate
      * @return \Illuminate\Http\Response
      */
-    public function destroy($book)
+    public function destroy($translate)
     {
-        if (Book::destroy($book)) {
+        if (Translate::destroy($translate)) {
             return response()->json([
-                'message' => 'Book successfully removed'
+                'message' => 'Translate successfully removed'
             ], 201);
         }
 
         return response()->json([
-            'message' => 'Book not exists'
+            'message' => 'Translate not exists'
         ], 404);
     }
 }
