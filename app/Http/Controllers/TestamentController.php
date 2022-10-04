@@ -27,7 +27,7 @@ class TestamentController extends Controller
     {
         if (Testament::create($request->all())) {
             return response()->json([
-                'message' => 'Testament succefully registered'
+                'message' => 'Testament successfully registered'
             ], 201);
         }
 
@@ -87,7 +87,7 @@ class TestamentController extends Controller
     {
         if (Testament::destroy($testament)) {
             return response()->json([
-                'message' => 'Testament succefully removed'
+                'message' => 'Testament successfully removed'
             ], 201);
         }
 

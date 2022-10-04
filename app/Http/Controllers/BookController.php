@@ -27,7 +27,7 @@ class BookController extends Controller
     {
         if (Book::create($request->all())) {
             return response()->json([
-                'message' => 'Book succefully registered'
+                'message' => 'Book successfully registered'
             ], 201);
         }
 
@@ -87,7 +87,7 @@ class BookController extends Controller
     {
         if (Book::destroy($book)) {
             return response()->json([
-                'message' => 'Book succefully removed'
+                'message' => 'Book successfully removed'
             ], 201);
         }
 

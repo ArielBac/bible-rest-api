@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\TestamentController;
 use App\Http\Controllers\VerseController;
@@ -17,12 +18,22 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Testament, Book and Verse Routs - multiple apiResources()
-Route::apiResources([
-    'testament' => TestamentController::class,
-    'book' => BookController::class,
-    'verse' => VerseController::class,
-]);
+// Routes' protection auth token
+Route::group(['middleware' => ['auth:sanctum']], function() {
+    // Testament, Book and Verse Routs - multiple apiResources()
+    Route::apiResources([
+        'testament' => TestamentController::class,
+        'book' => BookController::class,
+        'verse' => VerseController::class,
+    ]);
+
+    // Logout Route
+    Route::post('/logout', [AuthController::class, 'logout']);
+});
+
+// Auth Route
+Route::post('/register', [AuthController::class, 'register']);
+Route::post('/login', [AuthController::class, 'login']);
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();

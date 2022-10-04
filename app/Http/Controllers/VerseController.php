@@ -27,7 +27,7 @@ class VerseController extends Controller
     {
         if (Verse::create($request->all())) {
             return response()->json([
-                'message' => 'Verse succefully registered'
+                'message' => 'Verse successfully registered'
             ], 201);
         }
 
@@ -87,7 +87,7 @@ class VerseController extends Controller
     {
         if (Verse::destroy($verse)) {
             return response()->json([
-                'message' => 'Verse succefully removed'
+                'message' => 'Verse successfully removed'
             ], 201);
         }
 
