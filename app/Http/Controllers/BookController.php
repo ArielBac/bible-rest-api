@@ -47,6 +47,9 @@ class BookController extends Controller
         $book = Book::find($book);
 
         if ($book) {
+            $book->testament;
+            $book->verses;
+
             return $book;
         }
 

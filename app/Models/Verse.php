@@ -10,4 +10,9 @@ class Verse extends Model
     use HasFactory;
 
     protected $fillable = ['chapter', 'verse', 'text', 'book_id'];
+
+    public function book()
+    {
+        return $this->belongsTo(Book::class);
+    }
 }

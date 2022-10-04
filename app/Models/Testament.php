@@ -10,4 +10,10 @@ class Testament extends Model
     use HasFactory;
 
     protected $fillable = ['name'];
+
+    // 1 (testament) x n (books)
+    public function books()
+    {
+        return $this->hasMany(Book::class);
+    }
 }

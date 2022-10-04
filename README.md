@@ -1,6 +1,6 @@
 ## About Bible REST API
 
-This project was developed during a Laravel 9 REST API class. It has a CRUD for Testaments, Books and Verses of Holy Bible.
+This project was developed during a Laravel 9 REST API class. It has a CRUD for Testaments, Books and Verses of Holy Bible. I used Sanctum for authentication.
 
 ## Required
 

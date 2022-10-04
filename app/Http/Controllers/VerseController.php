@@ -47,6 +47,8 @@ class VerseController extends Controller
         $verse = Verse::find($verse);
 
         if ($verse) {
+            $verse->book;
+
             return $verse;
         }
 

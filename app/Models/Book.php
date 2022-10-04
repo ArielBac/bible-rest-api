@@ -10,4 +10,14 @@ class Book extends Model
     use HasFactory;
 
     protected $fillable = ['testament_id', 'position', 'name', 'abbreviation'];
+
+    public function testament()
+    {
+        return $this->belongsTo(Testament::class);
+    }
+
+    public function verses()
+    {
+        return $this->hasMany(Verse::class);
+    }
 }
