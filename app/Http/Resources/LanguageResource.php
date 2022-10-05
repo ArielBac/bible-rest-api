@@ -26,6 +26,19 @@ class LanguageResource extends JsonResource
             'id' => $this->id,
             'name' => $this->name,
             'translates' => new TranslatesCollection($this->whenLoaded('translates')), // One language can have many translates
+            // HATEOAS
+            'links' => [
+                [
+                    'rel' => 'update language',
+                    'type' => 'PUT',
+                    'link' => route('language.update', $this->id),
+                ],
+                [
+                    'rel' => 'delete language',
+                    'type' => 'DELETE',
+                    'link' => route('language.destroy', $this->id),
+                ],
+            ],
         ];
     }
 }

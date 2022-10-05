@@ -25,6 +25,19 @@ class TestamentResource extends JsonResource
             'id' => $this->id,
             'name' => $this->name,
             'books' => new BooksCollection($this->whenLoaded('books')),
+            // HATEOAS
+            'links' => [
+                [
+                    'rel' => 'update testament',
+                    'type' => 'PUT',
+                    'link' => route('testament.update', $this->id),
+                ],
+                [
+                    'rel' => 'delete testament',
+                    'type' => 'DELETE',
+                    'link' => route('testament.destroy', $this->id),
+                ],
+            ],
         ];
     }
 }

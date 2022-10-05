@@ -27,6 +27,19 @@ class TranslateResource extends JsonResource
             'abbreviation' => $this->abbreviation,
             'language' => new LanguageResource($this->whenLoaded('language')),
             'books' => new BooksCollection($this->whenLoaded('books')),
+            // HATEOAS
+            'links' => [
+                [
+                    'rel' => 'update translate',
+                    'type' => 'PUT',
+                    'link' => route('translate.update', $this->id),
+                ],
+                [
+                    'rel' => 'delete translate',
+                    'type' => 'DELETE',
+                    'link' => route('translate.destroy', $this->id),
+                ],
+            ],
         ];
     }
 }

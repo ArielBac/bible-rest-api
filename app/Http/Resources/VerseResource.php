@@ -27,6 +27,19 @@ class VerseResource extends JsonResource
             'verse' => $this->verse,
             'text' => $this->text,
             'book' => new BookResource($this->whenLoaded('book')),
+            // HATEOAS
+            'links' => [
+                [
+                    'rel' => 'update verse',
+                    'type' => 'PUT',
+                    'link' => route('verse.update', $this->id),
+                ],
+                [
+                    'rel' => 'delete verse',
+                    'type' => 'DELETE',
+                    'link' => route('verse.destroy', $this->id),
+                ],
+            ],
         ];
     }
 }

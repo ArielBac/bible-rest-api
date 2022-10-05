@@ -1,6 +1,6 @@
 ## About Bible REST API
 
-This project was developed during a Laravel 9 REST API class. It has a CRUD for Testaments, Books, Verses, Languages and Translates of Holy Bible. I used Sanctum for authentication, different ways of tables' relationships, API Resources' concepts, pagination.
+This project was developed during a Laravel 9 REST API class. It has a CRUD for Testaments, Books, Verses, Languages and Translates of Holy Bible. I used Sanctum for authentication, different ways of tables' relationships, API Resources' concepts, pagination and HATEOAS model.
 
 All routes, except /register and /login, need a authorization token generated when someone do the login, this token needs to be sent as a bearer auth in the request's header.
 
@@ -11,6 +11,10 @@ All routes, except /register and /login, need a authorization token generated wh
 - Table relationships
 - API Resources
 - Pagination
+- HATEOAS 
+  - Is a model that helps clients consuming the REST   service to browse resources and know what they can do, making the WEB API actions easier to understand.
+  Imagine that you make a request to an API, and it will return an object or collection of objects in response. That would be the WEB API without using HATEOAS.
+  Using HATEOAS the API response also adds descriptive links that serve to tell you how you can change the resource and information on how to fetch secondary or related resources.
 
 ## Required
 

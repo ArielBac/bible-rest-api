@@ -29,6 +29,19 @@ class BookResource extends JsonResource
             'testament' => new TestamentResource($this->whenLoaded('testament')),
             'verses' => new VersesCollection($this->whenLoaded('verses')),
             'translate' => new TranslateResource($this->whenLoaded('translate')),
+            // HATEOAS
+            'links' => [
+                [
+                    'rel' => 'update book',
+                    'type' => 'PUT',
+                    'link' => route('book.update', $this->id),
+                ],
+                [
+                    'rel' => 'delete book',
+                    'type' => 'DELETE',
+                    'link' => route('book.destroy', $this->id),
+                ],
+            ],
         ];
     }
 }
