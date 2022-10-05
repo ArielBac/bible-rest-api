@@ -1,8 +1,15 @@
 ## About Bible REST API
 
-This project was developed during a Laravel 9 REST API class. It has a CRUD for Testaments, Books, Verses, Languages and Translates of Holy Bible. I used Sanctum for authentication, different ways of tables' relationships.
+This project was developed during a Laravel 9 REST API class. It has a CRUD for Testaments, Books, Verses, Languages and Translates of Holy Bible. I used Sanctum for authentication, different ways of tables' relationships, API Resources' concepts.
 
 All routes, except /register and /login, need a authorization token generated when someone do the login, this token needs to be sent as a bearer auth in the request's header.
+
+## Implementations
+
+- CRUD
+- Sanctum auth
+- Table relationships
+- API Resources
 
 ## Required
 

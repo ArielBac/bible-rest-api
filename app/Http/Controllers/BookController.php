@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Book;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class BookController extends Controller
 {
@@ -46,6 +47,9 @@ class BookController extends Controller
     {
         $book = Book::find($book);
 
+        /** Image upload test */
+        // dd(Storage::disk('public')->url($book->cover));
+
         if ($book) {
             $book->testament;
             $book->verses;
@@ -70,10 +74,24 @@ class BookController extends Controller
     {
         $book = Book::find($book);
 
+        // $path = $request->cover->store('book_cover', 'public');
+
         if ($book) {
             $book->update($request->all());
 
             return $book;
+
+            /** Image upload test */
+            // $book->cover = $path;
+
+            // if ($book->save()) {
+            //     return $book;
+            // }
+
+            // return response()->json([
+            //     'message' => 'Update error'
+            // ], 404);
+
         }
 
         return response()->json([
