@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\VerseResource;
+use App\Http\Resources\VersesCollection;
 use App\Models\Verse;
 use Illuminate\Http\Request;
 
@@ -14,7 +16,10 @@ class VerseController extends Controller
      */
     public function index()
     {
-        return Verse::all();
+        return new VersesCollection(Verse::all());
+
+        /** Without API Resource collection */
+        // return Verse::all();
     }
 
     /**
@@ -44,12 +49,15 @@ class VerseController extends Controller
      */
     public function show($verse)
     {
-        $verse = Verse::find($verse);
+        $verse = Verse::with('book')->find($verse);
 
         if ($verse) {
-            $verse->book;
+            return new VerseResource($verse);
 
-            return $verse;
+            /** Without API Resource */
+            // $verse->book;
+
+            // return $verse;
         }
 
         return response()->json([

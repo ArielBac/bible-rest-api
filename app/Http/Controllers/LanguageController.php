@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\LanguageResource;
+use App\Http\Resources\LanguagesCollection;
 use App\Models\Language;
 use Illuminate\Http\Request;
 
@@ -14,7 +16,10 @@ class LanguageController extends Controller
      */
     public function index()
     {
-        return Language::all();
+        return new LanguagesCollection(Language::all());
+
+        /** Without API Resource collection */
+        // return Language::all();
     }
 
     /**
@@ -44,12 +49,14 @@ class LanguageController extends Controller
      */
     public function show($language)
     {
-        $language = Language::find($language);
+        $language = Language::with('translates')->find($language);
 
         if ($language) {
-            $language->translate;
+            return new LanguageResource($language);
 
-            return $language;
+            /** Without API Resource */
+            // $language->translates;
+            // return $language;
         }
 
         return response()->json([

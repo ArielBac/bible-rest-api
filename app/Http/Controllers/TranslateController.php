@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\TranslateResource;
+use App\Http\Resources\TranslatesCollection;
 use App\Models\Translate;
 use Illuminate\Http\Request;
 
@@ -14,7 +16,10 @@ class TranslateController extends Controller
      */
     public function index()
     {
-        return Translate::all();
+        return new TranslatesCollection(Translate::select('id', 'name', 'abbreviation')->paginate(5));
+
+        /** Without API resource collection */
+        //return Translate::all();
     }
 
     /**
@@ -44,13 +49,16 @@ class TranslateController extends Controller
      */
     public function show($translate)
     {
-        $translate = Translate::find($translate);
+        $translate = Translate::with('language', 'books')->find($translate);
 
         if ($translate) {
-            $translate->language;
-            $translate->books;
+            return new TranslateResource($translate);
 
-            return $translate;
+            /** Without API Resource */
+            // $translate->language;
+            // $translate->books;
+
+            // return $translate;
         }
 
         return response()->json([

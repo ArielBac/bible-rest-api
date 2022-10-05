@@ -14,7 +14,7 @@ class Language extends Model
     /**
      * 1 x n
      */
-    public function translate()
+    public function translates()
     {
         return $this->hasMany(Translate::class);
     }

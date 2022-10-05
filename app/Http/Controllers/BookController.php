@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\BookResource;
+use App\Http\Resources\BooksCollection;
 use App\Models\Book;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -15,7 +17,10 @@ class BookController extends Controller
      */
     public function index()
     {
-        return Book::all();
+        return new BooksCollection(Book::all());
+
+        /** Without API Resource collection */
+        // return Book::all();
     }
 
     /**
@@ -45,17 +50,20 @@ class BookController extends Controller
      */
     public function show($book)
     {
-        $book = Book::find($book);
+        $book = Book::with('testament', 'verses', 'translate')->find($book);
 
         /** Image upload test */
         // dd(Storage::disk('public')->url($book->cover));
 
         if ($book) {
-            $book->testament;
-            $book->verses;
-            $book->translate;
+            return new BookResource($book);
 
-            return $book;
+            /** Without API Resource */
+            // $book->testament;
+            // $book->verses;
+            // $book->translate;
+
+            // return $book;
         }
 
         return response()->json([

@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\TestamentResource;
+use App\Http\Resources\TestamentsCollection;
 use App\Models\Testament;
 use Illuminate\Http\Request;
 
@@ -14,7 +16,10 @@ class TestamentController extends Controller
      */
     public function index()
     {
-        return Testament::all();
+        return new TestamentsCollection(Testament::all());
+
+        /** Whithout API Resource collection */
+        // return Testament::all();
     }
 
     /**
@@ -44,12 +49,15 @@ class TestamentController extends Controller
      */
     public function show($testament)
     {
-        $testament = Testament::find($testament);
+        $testament = Testament::with('books')->find($testament);
 
         if ($testament) {
-            $testament->books;
+            return new TestamentResource($testament);
 
-            return $testament;
+            /** Without API Resource */
+            // $testament->books;
+
+            // return $testament;
         }
 
         return response()->json([
