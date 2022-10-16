@@ -26,9 +26,9 @@ All routes, except /register and /login, need a authorization token generated wh
 - Clone this repository
 - Configure .env file with your database credentials (use Laravel Sail documentation)
 - Execute:
-    - `.vendor/bin/sail up`
+    - `./vendor/bin/sail up`
     - `./vendor/bin/sail composer install`
-    - `.vendor/bin/sail artisan migrate`
+    - `./vendor/bin/sail artisan migrate`
 - It's done!
 
 ## End-points
